@@ -1,0 +1,29 @@
+{% extends 'base1.html' %}
+<!DOCTYPE html>
+{% block content %}
+<style>
+    
+</style>
+<table>
+    
+        <tr>
+            <th>UserName</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th>Account_No</th>
+            <td>{{user.accountnumber}}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+            <th>Amount</th>
+            <td>{{user.amount}}</td>
+        </tr>
+    
+</table>
+
+{% endblock %}
+</html>

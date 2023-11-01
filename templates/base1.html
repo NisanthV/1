@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>hai</h1>
+    <a href="{% url 'home' %}"><button type="button">Home</button></a>
+    <a href="{% url 'details' %}"><button type="button">My Account</button></a>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            transition: 1s;
+        }
+
+        .nav {
+            margin: 3px;
+
+
+
+            display: flex;
+            padding: 0px 10px;
+            justify-content: space-between;
+            text-align: center;
+            animation: nav 10s infinite forwards;
+
+        }
+
+        ol {
+            list-style-type: none;
+            display: flex;
+
+
+        }
+
+        ol li {
+            font-size: larger;
+            padding: 0px 20px;
+
+
+        }
+
+        @keyframes nav {
+            0% {
+                background-color: rgb(248, 45, 255);
+                color: black;
+            }
+
+            50% {
+                background-color: orangered;
+                color: rgb(1, 58, 14);
+            }
+
+            75% {
+                background-color: aqua;
+                color: rgb(235, 252, 5);
+            }
+            100%{
+                background-color: rgb(248, 45, 255);
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>L O G O</h1>
+        <ol class="ol">
+            <li>Home</li>
+            <li>services</li>
+            <li>contacts</li>
+            <li>support</li>
+            <li>help</li>
+        </ol>
+        <ol>
+            <li><a href="{% url 'create' %}"><button type="button">Create account</button></a></li>
+            <li><a href="{% url 'login' %}"><button type="button">Login</button></a></li>
+        </ol>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
