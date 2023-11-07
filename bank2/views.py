@@ -1,3 +1,4 @@
+import time
 import datetime
 import random
 from django.http import HttpResponse
@@ -59,15 +60,20 @@ def withdraw(request):
             try:
                 s=acc.objects.get(phone=sender)
                 r=acc.objects.get(phone=reciver)
+                pres=s.amount
+                prer=r.amount
 
                 if (s is not None) and (r is not None):
                     if s.amount>=amount:
                         s.amount=s.amount-amount
                         r.amount=r.amount+amount
-                        t=transcation(from_phone=sender,to_phone=reciver,t_amount=amount,dt=datetime.datetime.now())
-                        t.save()
                         s.save()
                         r.save()
+                        t=transcation(from_phone=sender,to_phone=reciver,t_amount=amount,dt=datetime.datetime.now(),p_amount=pres,total=s.amount)
+                        t1=transcation(from_phone=reciver,to_phone=sender,t_amount=amount,dt=datetime.datetime.now(),p_amount=prer,total=r.amount)
+                        t1.save()
+                        t.save()
+
                         return redirect('home')
                     else:
                         return render(request,'notfound.html',{'data':'insufficient balances'})
@@ -86,9 +92,11 @@ def statement(request):
         if form.is_valid():
             phone=form.cleaned_data.get('data')
             try:
-                t=transcation.objects.get(from_phone=phone)
+                t=transcation.objects.filter(from_phone=phone)
+
+
                 if t is not None:
-                    return render(request,'history.html',{'data':t})
+                    return render(request,'history.html',{'data':t,'phone':phone})
 
 
             except ObjectDoesNotExist:

@@ -12,4 +12,6 @@ class transcation(models.Model):
     to_phone = models.IntegerField(null=True)
     t_amount = models.IntegerField(null=True)
     dt = models.CharField(max_length=30)
+    p_amount=models.IntegerField(null=True)
+    total=models.IntegerField(null=True)
 

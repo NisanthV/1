@@ -19,13 +19,19 @@
 </head>
 
 <body>
+    <a href="{% url 'home' %}"><button>Home</button></a>
+
+    <h2>Your Number {{phone}}</h2>
 
     <table>
         <tr>
 
-            <th>reciver</th>
+            <th>sender/reciver</th>
             <th>amount</th>
             <th>data&time</th>
+            <th>previous amount</th>
+            <th>total amount</th>
+            <th>details</th>
         </tr>
         {% for i in data %}
         <tr>
@@ -38,6 +44,24 @@
             </td>
             <td>
                 {{i.dt}}
+            </td>
+            <td>
+                {{i.p_amount}}
+            </td>
+            <td>
+                {{i.total}}
+            </td>
+
+            <td>
+
+                {% if i.total > i.p_amount %}
+                    +{{i.t_amount}}
+
+                {% else %}
+                    -{{i.t_amount}}
+
+                {% endif %}
+
             </td>
 
         </tr>
