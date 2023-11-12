@@ -9,21 +9,38 @@
         tr,
         th {
             border: solid black;
+
         }
 
         td {
             padding: 10px;
 
         }
+
+        .table {
+            display: flex;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: lightsalmon;
+        }
+
+        body {
+            background-color: lightgreen;
+        }
     </style>
 </head>
 
 <body>
     <a href="{% url 'home' %}"><button>Home</button></a>
+    <a href="{% url 'details' %}"><button>Details</button></a>
 
-    <h2>Your Number {{phone}}</h2>
+    <center>
+        <h2>Your Number {{phone}}</h2>
+    </center>
 
-    <table>
+    <table class="table">
         <tr>
 
             <th>sender/reciver</th>
@@ -55,10 +72,10 @@
             <td>
 
                 {% if i.total > i.p_amount %}
-                    +{{i.t_amount}}
+                +{{i.t_amount}}
 
                 {% else %}
-                    -{{i.t_amount}}
+                -{{i.t_amount}}
 
                 {% endif %}
 
@@ -70,6 +87,7 @@
 
 
     </table>
+    
 
 
 

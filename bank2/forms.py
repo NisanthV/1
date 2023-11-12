@@ -10,6 +10,6 @@ class loginf(forms.Form):
     data=forms.CharField(max_length=10)
 
 class transfer(forms.Form):
-    sender=forms.IntegerField()
+    # sender=forms.IntegerField()
     reciver=forms.IntegerField()
     amount=forms.IntegerField()

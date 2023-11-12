@@ -36,6 +36,7 @@ def login(request):
             user=acc.objects.filter(phone=phone).first()
             if user is not None:
                 request.session['user_id'] = user.pk
+
                 return render(request,'frame.html',{'user':user})
             else:
                 return render(request,'notfound.html',{'data':'acc not fount'})
@@ -51,10 +52,13 @@ def details(request):
     return render(request,'details.html',{'user':user})
 def withdraw(request):
     form=transfer()
+    user_id=request.session.get('user_id')
+    data=acc.objects.get(pk=user_id)
+    sender=data.phone
     if request.method=='POST':
         form=transfer(request.POST)
         if form.is_valid():
-            sender=form.cleaned_data.get('sender')
+            # sender=form.cleaned_data.get('sender')
             reciver=form.cleaned_data.get('reciver')
             amount=form.cleaned_data.get('amount')
             try:
@@ -74,7 +78,7 @@ def withdraw(request):
                         t1.save()
                         t.save()
 
-                        return redirect('home')
+                        return redirect('details')
                     else:
                         return render(request,'notfound.html',{'data':'insufficient balances'})
             except ObjectDoesNotExist:
@@ -86,21 +90,21 @@ def withdraw(request):
 
 
 def statement(request):
-    form=loginf()
-    if request.method=='POST':
-        form=loginf(request.POST)
-        if form.is_valid():
-            phone=form.cleaned_data.get('data')
-            try:
-                t=transcation.objects.filter(from_phone=phone)
+
+    db=request.session.get('user_id')
+    data=acc.objects.all().get(pk=db)
+    phone=data.phone
+
+    try:
+        t=transcation.objects.filter(from_phone=phone)
 
 
-                if t is not None:
-                    return render(request,'history.html',{'data':t,'phone':phone})
+        if t is not None:
+            return render(request,'history.html',{'data':t,'phone':phone})
 
 
-            except ObjectDoesNotExist:
-                return render(request, 'notfound.html', {'data': 'not found'})
+    except ObjectDoesNotExist:
+        return render(request, 'notfound.html', {'data': 'not found'})
 
 
     return render(request,'login.html',{'form':form})
