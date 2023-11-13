@@ -7,7 +7,7 @@ class userform(forms.ModelForm):
         fields=['username','accountnumber','phone']
 
 class loginf(forms.Form):
-    data=forms.CharField(max_length=10)
+    phone=forms.CharField(max_length=10)
 
 class transfer(forms.Form):
     # sender=forms.IntegerField()

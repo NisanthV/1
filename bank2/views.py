@@ -32,7 +32,7 @@ def login(request):
     if request.method=='POST':
         form=loginf(request.POST)
         if form.is_valid():
-            phone=form.cleaned_data.get('data')
+            phone=form.cleaned_data.get('phone')
             user=acc.objects.filter(phone=phone).first()
             if user is not None:
                 request.session['user_id'] = user.pk

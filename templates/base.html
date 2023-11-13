@@ -39,6 +39,7 @@
 
 
         }
+        
 
         @keyframes nav {
             0% {
@@ -65,7 +66,7 @@
 
 <body>
     <div class="nav">
-        <h1>L O G O</h1>
+        <h1>N O T U</h1>
         <ol class="ol">
             <li>Home</li>
             <li>services</li>
@@ -77,6 +78,10 @@
             <li><a href="{% url 'create' %}"><button type="button">Create account</button></a></li>
             <li><a href="{% url 'login' %}"><button type="button">Login</button></a></li>
         </ol>
+    </div>
+    <div class="data">
+        <h2 style="right: 20px;">Open account to get easy life</h2>
+        
     </div>
     {% block content %}
     {% endblock %}

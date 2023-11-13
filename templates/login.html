@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 <!DOCTYPE html>
     {% block content %}
-        <form  method="POST">
+        <style>
+            *{
+                transition: 1.5s;
+            }
+            .center{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: crimson;
+                padding: 10px 20px;
+                font-weight: bolder;
+
+            }
+            input:hover{
+                padding: 20px 20px;
+                background-color: black;
+                color: white;
+                font-size: larger;
+            }
+        </style>
+        <form  method="POST" class="center">
             {% csrf_token %}
             {{form}}
             <input type="submit" value="Login">
